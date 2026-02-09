@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-zinc-950 text-zinc-50 antialiased selection:bg-violet-500/30;
+    overflow-x: hidden;
+  }
+}
+
+.dots-pattern {
+  background-image: radial-gradient(#27272a 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.glass-card {
+  @apply bg-zinc-900/80 backdrop-blur-xl border border-zinc-800;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-b from-white via-zinc-200 to-zinc-400;
+}
+
+.accent-gradient {
+  @apply bg-gradient-to-r from-violet-500 via-purple-500 to-fuchsia-500;
+}
+
+.glow-violet {
+  box-shadow: 0 0 80px rgba(139, 92, 246, 0.1);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+}

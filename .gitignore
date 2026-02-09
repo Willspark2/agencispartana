@@ -1,0 +1,12 @@
+# OpenClaw Workspace
+.openclaw/
+agents/hunter/auth-profiles.json
+*.zip
+*.tar.gz
+*.jpg
+*.sh
+file_*
+shared_drive/
+briefing-form/node_modules/
+briefing-form/dist/
+config/mcporter.json

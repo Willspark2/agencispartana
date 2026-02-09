@@ -1,0 +1,20 @@
+{
+  "tasks": [
+    {
+      "id": "001",
+      "title": "Configuração do CRM Digital",
+      "priority": "Alta",
+      "responsible": "icaro",
+      "status": "in_progress",
+      "description": "Criar sistema de arquivos para gerenciar tarefas e logs de agentes."
+    },
+    {
+      "id": "002",
+      "title": "Definição de Oferta Irresistível",
+      "priority": "Alta",
+      "responsible": "erika",
+      "status": "in_progress",
+      "description": "Estruturar a oferta da Agência Spartana para o mercado de High Ticket."
+    }
+  ]
+}
