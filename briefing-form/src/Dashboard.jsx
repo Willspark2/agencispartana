@@ -13,9 +13,9 @@ import {
 
 // Mock data integration - in a real app this would fetch agency/CRM.json
 const initialTeam = [
-  { name: 'Erika', role: 'Head de Performance', status: 'Online', color: 'text-green-400' },
-  { name: 'Ícaro', role: 'Architect / Ops', status: 'Executando Tarefa 001', color: 'text-blue-400' },
-  { name: 'Maya', role: 'Copy / Social', status: 'Offline', color: 'text-gray-500' }
+  { name: 'Erika', role: 'Head de Performance', status: 'Gerenciando Operação', color: 'text-purple-400' },
+  { name: 'Ícaro', role: 'Architect / Ops', status: 'Standby (Pulse 15m)', color: 'text-blue-400' },
+  { name: 'Maya', role: 'Copy / Social', status: 'Standby (Pulse 15m)', color: 'text-pink-400' }
 ];
 
 const initialTasks = [
