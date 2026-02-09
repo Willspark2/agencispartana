@@ -47,12 +47,17 @@ const Dashboard = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h1 className="text-4xl font-bold tracking-tighter text-white flex items-center gap-6">
-            <div className="w-24 h-24 relative flex items-center justify-center overflow-hidden rounded-full">
+            <div className="w-24 h-24 relative flex items-center justify-center overflow-hidden">
               <img 
                 src="/logo_spartana.jpg" 
                 alt="Logo" 
                 className="w-full h-full object-contain scale-150" 
-                style={{ filter: 'brightness(1.2) contrast(1.1) grayscale(0) sepia(0)', mixBlendMode: 'screen' }}
+                style={{ 
+                  filter: 'brightness(1.5) contrast(1.2)',
+                  mixBlendMode: 'screen',
+                  WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)',
+                  maskImage: 'radial-gradient(circle, black 50%, transparent 70%)'
+                }}
               />
             </div>
             SPARTANA {activeTab === 'agency' ? 'OPERATIONS' : 'PERSONAL'}
