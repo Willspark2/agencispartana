@@ -4,7 +4,9 @@
   "description": "Workspace de agentes da Agência Spartana",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run dev --prefix briefing-form",
+    "build": "npm run build --prefix briefing-form",
+    "install-all": "npm install && npm install --prefix briefing-form",
     "dashboard": "cat DASHBOARD.md"
   },
   "keywords": [],
