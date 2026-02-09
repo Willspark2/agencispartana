@@ -46,11 +46,11 @@ const Dashboard = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tighter text-white flex items-center gap-3">
-            <img src="/logo_spartana.jpg" alt="Logo" className="w-10 h-10 object-contain" />
+          <h1 className="text-4xl font-bold tracking-tighter text-white flex items-center gap-4">
+            <img src="/logo_spartana.jpg" alt="Logo" className="w-16 h-16 object-contain mix-blend-screen" />
             SPARTANA {activeTab === 'agency' ? 'OPERATIONS' : 'PERSONAL'}
           </h1>
-          <p className="text-gray-400 mt-1 tracking-widest uppercase text-[10px]">Centro de Comando & Performance</p>
+          <p className="text-gray-400 mt-1 tracking-widest uppercase text-xs">Centro de Comando & Performance</p>
         </div>
         
         {/* Tab Switcher */}
