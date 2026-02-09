@@ -23,6 +23,14 @@
       "personality": "Criativa, persuasiva, domina gatilhos mentais.",
       "model": "gemini-1.5-flash",
       "status": "offline"
+    },
+    {
+      "id": "midas",
+      "name": "Midas",
+      "role": "Financial Strategist",
+      "personality": "Analítico, focado em saída de dívidas, aportes inteligentes e liberdade financeira.",
+      "model": "gemini-1.5-pro",
+      "status": "offline"
     }
   ]
 }
