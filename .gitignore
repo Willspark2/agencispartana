@@ -4,6 +4,7 @@ agents/hunter/auth-profiles.json
 *.zip
 *.tar.gz
 *.jpg
+!briefing-form/public/logo_spartana.jpg
 *.sh
 file_*
 shared_drive/
