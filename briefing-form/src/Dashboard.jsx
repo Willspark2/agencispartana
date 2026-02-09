@@ -46,8 +46,10 @@ const Dashboard = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-4xl font-bold tracking-tighter text-white flex items-center gap-4">
-            <img src="/logo_spartana.jpg" alt="Logo" className="w-16 h-16 object-contain mix-blend-screen" />
+          <h1 className="text-4xl font-bold tracking-tighter text-white flex items-center gap-6">
+            <div className="w-24 h-24 relative flex items-center justify-center overflow-hidden">
+              <img src="/logo_spartana.jpg" alt="Logo" className="w-full h-full object-contain mix-blend-screen scale-150" />
+            </div>
             SPARTANA {activeTab === 'agency' ? 'OPERATIONS' : 'PERSONAL'}
           </h1>
           <p className="text-gray-400 mt-1 tracking-widest uppercase text-xs">Centro de Comando & Performance</p>
