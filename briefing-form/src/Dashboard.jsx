@@ -53,10 +53,8 @@ const Dashboard = () => {
                 alt="Logo" 
                 className="w-full h-full object-contain scale-150" 
                 style={{ 
-                  filter: 'brightness(1.5) contrast(1.2)',
-                  mixBlendMode: 'screen',
-                  WebkitMaskImage: 'radial-gradient(circle, black 50%, transparent 70%)',
-                  maskImage: 'radial-gradient(circle, black 50%, transparent 70%)'
+                  filter: 'brightness(1.5) contrast(1.2) grayscale(0)',
+                  mixBlendMode: 'lighten',
                 }}
               />
             </div>
