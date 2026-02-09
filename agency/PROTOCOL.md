@@ -16,6 +16,6 @@
 - **Complexidade MÉDIA (Copy/Execução):** Gemini 3 Flash.
 - **Complexidade BAIXA (Formatação/Logs):** Gemini 1.5 Flash.
 
-## 4. Comunicação Inter-Agentes
-- Agentes devem deixar "notas de passagem" em `tasks/NOTE_TASKID.md`.
-- No `DASHBOARD.md`, a seção **CADÊNCIA** deve refletir as últimas 5 ações globais.
+## 5. Organização de Repositórios
+- **agencispartana (Este):** HQ dos Agentes. Contém o CRM, DASHBOARD, SOUL dos agentes e toda a inteligência operacional da agência.
+- **spartana_shared (ou outros):** Entrega de Projetos. Cada projeto originado de briefing ou vendas será versionado em pastas específicas em repositórios de entrega, mantendo o HQ limpo de código de clientes.
