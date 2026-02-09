@@ -1,0 +1,13 @@
+{
+  "name": "agencia-spartana",
+  "version": "1.0.0",
+  "description": "Workspace de agentes da Agência Spartana",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dashboard": "cat DASHBOARD.md"
+  },
+  "keywords": [],
+  "author": "Will & Erika",
+  "license": "ISC"
+}
