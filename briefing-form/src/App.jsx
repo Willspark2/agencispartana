@@ -5,10 +5,15 @@ function App() {
   const [initialTab, setInitialTab] = useState('dashboard');
 
   useEffect(() => {
-    // Lógica de Subdomínio: Se entrar via hunter.agencispartana.com, abre direto no modo guerra
+    // Roteamento Inteligente por Subdomínio
     const hostname = window.location.hostname;
+    
     if (hostname.includes('hunter')) {
       setInitialTab('prospec');
+    } else if (hostname.includes('operacoes')) {
+      setInitialTab('dashboard');
+    } else {
+      setInitialTab('dashboard'); // Padrão
     }
   }, []);
 
