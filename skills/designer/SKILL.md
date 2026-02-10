@@ -1,29 +1,16 @@
 ---
 name: designer
-description: Ferramentas e fluxos para design gráfico, especificamente remoção de fundo de imagens (background removal) e tratamento básico de ativos da marca Spartana. Use quando precisar limpar o fundo de um logo ou imagem enviada pelo usuário.
+description: Ferramentas e fluxos para design gráfico, especificamente remoção de fundo de imagens (background removal) e tratamento básico de ativos da marca Spartana.
 ---
 
 # Designer Skill
 
-Esta skill fornece ferramentas para o Designer da Agência Spartana tratar imagens e ativos de marca.
+Esta skill opera sob a Arquitetura de 3 Camadas definida em AGENTS.md.
 
-## Remoção de Fundo (Background Removal)
+## Workflows Disponíveis
+- **Remoção de Fundo**: Consulte a diretiva em `directives/remover_fundo.md`.
+- **Scripts Relacionados**: Veja `execution/remove_bg.py`.
 
-Para imagens com fundo sólido (especialmente branco ou cores claras), utilize o script Python integrado.
-
-### Como usar o script:
-
-```bash
-python3 skills/designer/scripts/remove_bg.py <input_path> <output_path> [threshold]
-```
-
-- **threshold**: Opcional. Padrão é 220. Valores maiores removem apenas brancos puros; valores menores são mais agressivos com tons de cinza claro.
-
-### Fluxo de Trabalho:
-1. Identifique a imagem enviada pelo usuário (geralmente em `/root/.openclaw/media/inbound/`).
-2. Execute o script definindo o `output_path` como uma extensão `.png`.
-3. Valide o resultado e mova para a pasta de ativos final (ex: `briefing-form/public/`).
-
-## Ativos da Marca Spartana
+## Ativos da Marca
 - Logo Oficial: `briefing-form/public/logo_spartana.png`
-- Cores: Dourado Premium, Fundo Preto Onyx.
+- Manual de Identidade: Ver `SOUL.md`.
