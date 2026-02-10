@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { 
-  Users, 
-  Target, 
-  Activity, 
-  ChevronRight, 
-  Clock, 
+import {
+  Users,
+  Target,
+  Activity,
+  ChevronRight,
+  Clock,
   BarChart3,
   MessageSquare,
   Briefcase,
@@ -48,30 +48,26 @@ const Dashboard = () => {
         <div>
           <h1 className="text-4xl font-bold tracking-tighter text-white flex items-center gap-6">
             <div className="w-24 h-24 relative flex items-center justify-center overflow-hidden">
-              <img 
-                src="/logo_spartana.jpg" 
-                alt="Logo" 
-                className="w-full h-full object-contain scale-150" 
-                style={{ 
-                  filter: 'brightness(1.5) contrast(1.2) grayscale(0)',
-                  mixBlendMode: 'lighten',
-                }}
+              <TransparentImage
+                src="/logo_spartana.jpg"
+                alt="Logo"
+                className="w-full h-full object-contain"
               />
             </div>
             SPARTANA {activeTab === 'agency' ? 'OPERATIONS' : 'PERSONAL'}
           </h1>
           <p className="text-gray-400 mt-1 tracking-widest uppercase text-xs">Centro de Comando & Performance</p>
         </div>
-        
+
         {/* Tab Switcher */}
         <div className="bg-zinc-900 p-1 rounded-xl border border-zinc-800 flex gap-1">
-          <button 
+          <button
             onClick={() => setActiveTab('agency')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === 'agency' ? 'bg-white text-black shadow-lg' : 'text-zinc-500 hover:text-white'}`}
           >
             <Briefcase size={14} /> AGÊNCIA
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('personal')}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === 'personal' ? 'bg-white text-black shadow-lg' : 'text-zinc-500 hover:text-white'}`}
           >
@@ -81,7 +77,7 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+
         {/* Sidebar */}
         <div className="lg:col-span-1 space-y-6">
           {/* Team */}
@@ -199,5 +195,55 @@ const Dashboard = () => {
 };
 
 const CheckCircle2 = ({ size, className }) => <Activity size={size} className={className} />;
+
+const TransparentImage = ({ src, alt, className, style }) => {
+  const [imgSrc, setImgSrc] = useState(src);
+  const [processed, setProcessed] = useState(false);
+
+  React.useEffect(() => {
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    img.src = src;
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imgData.data;
+
+      let hasWhite = false;
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        // If pixel is very bright (white background), make it transparent
+        if (r > 200 && g > 200 && b > 200) {
+          data[i + 3] = 0;
+          hasWhite = true;
+        }
+      }
+
+      if (hasWhite) {
+        ctx.putImageData(imgData, 0, 0);
+        setImgSrc(canvas.toDataURL());
+        setProcessed(true);
+      }
+    };
+  }, [src]);
+
+  return (
+    <img
+      src={imgSrc}
+      alt={alt}
+      className={className}
+      style={{
+        ...style,
+        mixBlendMode: 'screen' // Ensures black backgrounds also become transparent
+      }}
+    />
+  );
+};
 
 export default Dashboard;
