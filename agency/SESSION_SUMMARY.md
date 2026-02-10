@@ -15,6 +15,7 @@
 5. **Estratégia "Google Invisível":** Plano de prospecção aprovado. Pipeline: Extração (Ícaro) -> Dossiê de Invisibilidade (Ícaro) -> Copy de Ego e Medo (Maya) -> Oferta Fast-Cash R$ 2.497 (Midas).
 
 ## 📋 Próximos Passos
-- Implementar interatividade de adição de tarefas no Dashboard (UI).
+- Implementar interatividade de adição de tarefas no Dashboard (UI) vinculada ao Supabase.
 - Criar script `execution/find_local_leads.py` baseado no brainstorm de prospecção.
 - Validar templates de "Dossiê de Invisibilidade" para envio automático.
+- Integrar tabelas do Supabase (Agência vs Pessoal) para persistência real de dados.
