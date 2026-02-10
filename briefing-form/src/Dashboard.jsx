@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 
 // ——————————————————————————————————————————————————————————————————————————————————————
-// PREMIUM UI COMPONENTS (SHADCN / SPARTANA STYLE)
+// PREMIUM UI COMPONENTS (DEFINIDOS NO TOPO PARA EVITAR ERROS DE INICIALIZAÇÃO)
 // ——————————————————————————————————————————————————————————————————————————————————————
 
 const Badge = ({ children, variant = 'default' }) => {
@@ -20,7 +20,7 @@ const Badge = ({ children, variant = 'default' }) => {
     purple: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
   };
   return (
-    <span className={`px-2.5 py-1 rounded-md text-[10px] font-black border ${variants[variant]} uppercase tracking-widest`}>
+    <span className={`px-2 py-0.5 rounded-md text-[10px] font-black border ${variants[variant]} uppercase tracking-widest`}>
       {children}
     </span>
   );
@@ -58,11 +58,127 @@ const TransparentImage = ({ src, alt, className, style }) => {
     };
   }, [src]);
 
-  return <img src={imgSrc} alt={alt} className={className} style={{ ...style, mixBlendMode: 'screen', transform: 'scale(2.2)' }} />;
+  return <img src={imgSrc} alt={alt} className={className} style={{ ...style, mixBlendMode: 'screen' }} />;
 };
 
+const WorkspaceBtn = ({ icon: Icon, label, active, onClick, open, color }) => (
+  <button onClick={onClick} className={`w-full flex items-center gap-5 p-5 rounded-[1.5rem] transition-all ${active ? 'bg-zinc-900 border border-zinc-800 shadow-2xl scale-[1.02]' : 'hover:bg-zinc-900/40'}`}>
+    <Icon size={28} className={`${active ? color : 'text-zinc-700'}`} />
+    {open && <span className={`text-[13px] font-black uppercase tracking-[0.2em] ${active ? 'text-white' : 'text-zinc-600'}`}>{label}</span>}
+  </button>
+);
+
+const SidebarBtn = ({ icon: Icon, label, active, onClick, open }) => (
+  <button onClick={onClick} className={`w-full flex items-center gap-5 p-4 rounded-2xl transition-all ${active ? 'bg-zinc-900/80 text-white border border-zinc-800' : 'text-zinc-600 hover:text-zinc-300 hover:bg-zinc-900/20'}`}>
+    <Icon size={20} />
+    {open && <span className="text-[12px] font-bold uppercase tracking-widest">{label}</span>}
+  </button>
+);
+
+const TaskCardLarge = ({ task, onClick }) => (
+  <div onClick={onClick} className="bg-zinc-900/40 border border-zinc-800 p-10 rounded-[2.5rem] hover:border-purple-500/50 transition-all cursor-pointer group relative overflow-hidden">
+     <div className="flex justify-between items-start mb-8">
+        <Badge variant={task.priority === 'CRÍTICA' ? 'critical' : 'high'}>{task.priority}</Badge>
+        <span className="text-zinc-700 font-mono text-[10px]">#{task.id}</span>
+     </div>
+     <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em] mb-3 block">{task.project}</span>
+     <h4 className="text-3xl font-black text-white uppercase italic tracking-tighter group-hover:text-purple-400 transition-colors mb-6">{task.title}</h4>
+     <div className="flex items-center justify-between pt-8 border-t border-zinc-800/50">
+        <div className="flex items-center gap-4">
+           <div className="w-10 h-10 rounded-2xl bg-zinc-800 flex items-center justify-center text-[12px] font-black text-white">{task.resp ? task.resp[0] : '?'}</div>
+           <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{task.resp}</span>
+        </div>
+        <ArrowRight size={32} className="text-zinc-800 group-hover:text-purple-500 transition-all" />
+     </div>
+  </div>
+);
+
+const TaskKanbanCard = ({ task, onClick, onDelete, onEdit }) => (
+  <div onClick={onClick} className="bg-zinc-950 border border-zinc-800 p-7 rounded-[2.2rem] hover:border-zinc-600 transition-all cursor-pointer group shadow-2xl">
+     <div className="flex justify-between items-start mb-6">
+        <Badge variant={task.priority === 'CRÍTICA' ? 'critical' : 'default'}>{task.priority}</Badge>
+        <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
+           <button onClick={(e) => { e.stopPropagation(); onEdit(); }} className="p-2 hover:bg-zinc-900 rounded-xl text-zinc-600 hover:text-blue-400"><Edit2 size={14} /></button>
+           <button onClick={(e) => { e.stopPropagation(); onDelete(); }} className="p-2 hover:bg-zinc-900 rounded-xl text-zinc-600 hover:text-red-500"><Trash2 size={14} /></button>
+        </div>
+     </div>
+     <span className="text-[9px] font-black text-zinc-700 uppercase tracking-widest mb-2 block">{task.project}</span>
+     <h4 className="text-base font-bold text-zinc-200 uppercase tracking-tight leading-tight mb-8">{task.title}</h4>
+     <div className="flex items-center justify-between pt-5 border-t border-zinc-900">
+        <div className="flex items-center gap-3">
+           <div className="w-7 h-7 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center text-[10px] font-black text-zinc-500 uppercase italic">{task.resp ? task.resp[0] : '?'}</div>
+           <span className="text-[11px] font-bold text-zinc-600 uppercase tracking-tighter">{task.resp}</span>
+        </div>
+        <ChevronRight size={18} className="text-zinc-800 group-hover:text-white" />
+     </div>
+  </div>
+);
+
+const BrainstormItem = ({ agent, time, text, color }) => (
+  <div className="relative pl-10">
+     <div className={`absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full ${color} shadow-[0_0_15px_rgba(168,85,247,0.5)] z-10`} />
+     <div className="flex justify-between items-center mb-1">
+        <span className="text-[11px] font-black text-white uppercase tracking-widest italic">{agent}</span>
+        <span className="text-[10px] font-mono text-zinc-700">{time}</span>
+     </div>
+     <p className="text-[14px] text-zinc-400 leading-relaxed font-medium">{text}</p>
+  </div>
+);
+
+const DetailBlock = ({ title, content, icon: Icon, color, isList = false }) => (
+  <div className="space-y-8">
+     <div className="flex items-center gap-4">
+        {Icon && <Icon size={32} className={color} />}
+        <h3 className="text-xs font-black uppercase tracking-[0.5em] text-zinc-600">{title}</h3>
+     </div>
+     {isList ? (
+       <div className="space-y-4">
+         {content && content.split('\n').map((item, i) => (
+           <div key={i} className="flex gap-8 p-8 bg-zinc-900/30 border border-zinc-900 rounded-[2.5rem] text-2xl text-zinc-300 font-medium">
+             <span className="text-zinc-800 font-black italic">{String(i+1).padStart(2, '0')}</span>
+             <span>{item}</span>
+           </div>
+         ))}
+       </div>
+     ) : (
+       <p className="text-3xl text-zinc-300 leading-relaxed italic font-light border-l-4 border-zinc-900 pl-10">"{content}"</p>
+     )}
+  </div>
+);
+
+const MetaItem = ({ label, val, icon: Icon }) => (
+  <div className="flex items-center gap-4">
+     <div className="p-3 bg-zinc-900 rounded-2xl border border-zinc-800"><Icon size={24} className="text-zinc-600" /></div>
+     <div>
+        <p className="text-[10px] font-black text-zinc-700 uppercase tracking-widest">{label}</p>
+        <p className="text-lg font-bold text-zinc-400 uppercase italic">{val}</p>
+     </div>
+  </div>
+);
+
+const InputHD = ({ label, ...props }) => (
+  <div className="space-y-3">
+    <label className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.2em] ml-1">{label}</label>
+    <input className="w-full bg-zinc-900 border border-zinc-800 rounded-[1.5rem] p-6 text-white focus:border-purple-500 outline-none transition-all shadow-inner font-bold text-lg" {...props} />
+  </div>
+);
+
+const TextAreaHD = ({ label, ...props }) => (
+  <div className="space-y-3">
+    <label className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.2em] ml-1">{label}</label>
+    <textarea className="w-full bg-zinc-900 border border-zinc-800 rounded-[1.5rem] p-6 text-white focus:border-purple-500 outline-none transition-all resize-none shadow-inner font-medium text-lg" {...props} />
+  </div>
+);
+
+const SectionHeader = ({ title, icon: Icon, color = "text-zinc-700" }) => (
+  <div className="flex items-center gap-5">
+    <div className="p-2 bg-zinc-900 rounded-lg border border-zinc-800"><Icon size={20} className={color} /></div>
+    <h3 className="text-sm font-black uppercase tracking-[0.5em] text-zinc-600">{title}</h3>
+  </div>
+);
+
 // ——————————————————————————————————————————————————————————————————————————————————————
-// MAIN DASHBOARD APPLICATION
+// COMPONENTE PRINCIPAL (DASHBOARD)
 // ——————————————————————————————————————————————————————————————————————————————————————
 
 const Dashboard = () => {
@@ -114,7 +230,7 @@ const Dashboard = () => {
   });
 
   const handleDeleteTask = (id) => {
-    if (window.confirm('Excluir esta missão?')) {
+    if (window.confirm('Excluir esta missão permanentemente?')) {
       setTasks(tasks.filter(t => t.id !== id));
       setShowDetails(false);
     }
@@ -133,6 +249,11 @@ const Dashboard = () => {
     setBrainstormMsg('');
   };
 
+  const modes = {
+    agency: { label: 'PROFISSIONAL', color: 'text-purple-400' },
+    personal: { label: 'PESSOAL', color: 'text-emerald-400' }
+  };
+
   const menuItems = {
     agency: [
       { id: 'dashboard', label: 'Dashboard', icon: Activity },
@@ -148,13 +269,21 @@ const Dashboard = () => {
     ]
   };
 
+  const kanbanColumns = [
+    { id: 'todo', title: 'Backlog', color: 'bg-zinc-500' },
+    { id: 'in_progress', title: 'Em Execução', color: 'bg-blue-500' },
+    { id: 'done', title: 'Finalizado', color: 'bg-emerald-500' }
+  ];
+
+  const currentTasks = tasks.filter(t => t.category === activeWorkspace);
+
   return (
     <div className="min-h-screen bg-[#020202] text-zinc-400 font-sans flex overflow-hidden selection:bg-purple-500/30">
       
       {/* 🟢 SIDEBAR NAV */}
       <aside className={`${isSidebarOpen ? 'w-80' : 'w-24'} bg-[#080808] border-r border-zinc-900 transition-all duration-500 flex flex-col z-50`}>
         <div className="p-10 flex items-center gap-5">
-            <TransparentImage src="/logo_spartana.jpg" className="w-16 h-16 object-contain" alt="Logo" style={{ transform: 'scale(1.8)' }} />
+            <TransparentImage src="/logo_spartana.jpg" className="w-16 h-16 object-contain" alt="Logo" style={{ transform: 'scale(2.2)' }} />
             {isSidebarOpen && (
               <div className="flex flex-col">
                 <span className="font-black text-white text-2xl tracking-tighter uppercase italic leading-none">Spartana</span>
@@ -166,7 +295,7 @@ const Dashboard = () => {
         <nav className="flex-1 px-6 space-y-12 overflow-y-auto custom-scrollbar">
           <div className="space-y-3">
              <p className={`text-[10px] font-black text-zinc-700 uppercase tracking-[0.3em] mb-6 ${!isSidebarOpen && 'text-center'}`}>Workspace</p>
-             <WorkspaceBtn active={activeWorkspace === 'agency'} onClick={() => { setActiveWorkspace('agency'); setActiveTab('dashboard'); }} icon={Briefcase} label="Operações" open={isSidebarOpen} color="text-purple-500" />
+             <WorkspaceBtn active={activeWorkspace === 'agency'} onClick={() => { setActiveWorkspace('agency'); setActiveTab('dashboard'); }} icon={Briefcase} label="Profissional" open={isSidebarOpen} color="text-purple-500" />
              <WorkspaceBtn active={activeWorkspace === 'personal'} onClick={() => { setActiveWorkspace('personal'); setActiveTab('dashboard'); }} icon={User} label="Pessoal" open={isSidebarOpen} color="text-emerald-500" />
           </div>
 
@@ -191,7 +320,7 @@ const Dashboard = () => {
             <h2 className="text-3xl font-black text-white uppercase italic tracking-tighter flex items-center gap-4">
               <span className={activeWorkspace === 'agency' ? 'text-purple-500' : 'text-emerald-500'}>{modes[activeWorkspace].label}</span>
               <span className="text-zinc-800 font-thin not-italic">/</span> 
-              <span className="text-zinc-500">{modes[activeWorkspace].tabs.find(t => t.id === activeTab)?.label}</span>
+              <span className="text-zinc-500">{menuItems[activeWorkspace].find(t => t.id === activeTab)?.label}</span>
             </h2>
           </div>
 
@@ -204,7 +333,7 @@ const Dashboard = () => {
 
         <div className="flex-1 overflow-y-auto p-12 custom-scrollbar">
           
-          {/* VIEW: PROJECTS (THE NEW REQUIRED TAB) */}
+          {/* VIEW: PROJECTS */}
           {activeTab === 'projects' && (
             <div className="space-y-12 max-w-7xl animate-in fade-in duration-500">
                <h3 className="text-5xl font-black text-white uppercase italic tracking-tighter border-b border-zinc-900 pb-8">Projetos <span className="text-purple-500">Ativos</span></h3>
@@ -250,8 +379,8 @@ const Dashboard = () => {
                   </div>
                   <div className="space-y-10">
                     <SectionHeader title="Brainstorm HQ" icon={MessageSquare} color="text-purple-500" />
-                    <Card className="p-8 border-purple-500/10 bg-purple-500/5 h-full flex flex-col">
-                       <div className="flex-1 space-y-8 mb-8">
+                    <Card className="p-8 border-purple-500/10 bg-purple-500/5 h-full flex flex-col min-h-[400px]">
+                       <div className="flex-1 space-y-8 mb-8 overflow-y-auto custom-scrollbar pr-2">
                           {brainstormFeed.map((f, i) => <BrainstormItem key={i} {...f} />)}
                        </div>
                        <form onSubmit={sendBrainstorm} className="relative mt-auto pt-6 border-t border-zinc-900">
@@ -269,14 +398,15 @@ const Dashboard = () => {
               )}
               
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                 {['todo', 'in_progress', 'done'].map(status => (
-                    <div key={status} className="flex flex-col space-y-6">
+                 {kanbanColumns.map(col => (
+                    <div key={col.id} className="flex flex-col space-y-6">
                        <div className="flex items-center justify-between px-6">
-                          <span className="text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">{status === 'todo' ? 'Backlog' : status === 'in_progress' ? 'Execução' : 'Concluído'}</span>
+                          <span className="text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">{col.title}</span>
+                          <span className="text-xs font-mono font-bold text-zinc-700">{tasks.filter(t => t.status === col.id && t.category === activeWorkspace).length}</span>
                        </div>
-                       <div className="bg-zinc-900/10 border border-zinc-900/40 border-dashed rounded-[3rem] p-4 space-y-4 min-h-[500px]">
-                          {tasks.filter(t => t.status === status && t.category === activeWorkspace).map(task => (
-                            <TaskKanbanCard key={task.id} task={task} onClick={() => { setSelectedTask(task); setShowDetails(true); }} onEdit={(e) => { e.stopPropagation(); setEditingTask(task); setNewTask({...task}); setShowModal(true); }} onDelete={(e) => { e.stopPropagation(); handleDeleteTask(task.id); }} />
+                       <div className="flex-1 bg-zinc-900/10 border border-zinc-900/40 border-dashed rounded-[3rem] p-4 space-y-4 min-h-[500px]">
+                          {tasks.filter(t => t.status === col.id && t.category === activeWorkspace).map(task => (
+                            <TaskKanbanCard key={task.id} task={task} onClick={() => { setSelectedTask(task); setShowDetails(true); }} onEdit={() => { setEditingTask(task); setNewTask({...task}); setShowModal(true); }} onDelete={() => { handleDeleteTask(task.id); }} />
                           ))}
                        </div>
                     </div>
@@ -340,8 +470,8 @@ const Dashboard = () => {
 
       {/* 🔴 DETAIL MODAL HD (THE "BIG SCREEN") */}
       {showDetails && selectedTask && (
-        <div className="fixed inset-0 bg-black/98 backdrop-blur-3xl z-[100] flex items-center justify-center p-8 lg:p-24 animate-in fade-in duration-300" onClick={() => setShowDetails(false)}>
-           <div className="w-full max-w-6xl bg-zinc-950 border border-zinc-800/50 rounded-[4rem] p-16 relative overflow-y-auto max-h-full" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/95 backdrop-blur-3xl z-[100] flex items-center justify-center p-8 lg:p-24 animate-in fade-in duration-300" onClick={() => setShowDetails(false)}>
+           <div className="w-full max-w-6xl bg-zinc-950 border border-zinc-800/50 rounded-[4rem] p-16 relative overflow-y-auto max-h-full custom-scrollbar shadow-[0_0_150px_rgba(0,0,0,1)]" onClick={e => e.stopPropagation()}>
               <button onClick={() => setShowDetails(false)} className="absolute top-12 right-12 text-zinc-700 hover:text-white transition-all hover:rotate-90 duration-300"><X size={48} strokeWidth={1.5} /></button>
               <div className="flex items-center gap-6 mb-8">
                  <Badge variant={selectedTask.priority === 'CRÍTICA' ? 'critical' : 'high'}>{selectedTask.priority}</Badge>
@@ -349,11 +479,11 @@ const Dashboard = () => {
               </div>
               <h2 className="text-7xl font-black text-white uppercase italic tracking-tighter leading-[0.9] mb-12 border-b border-zinc-900 pb-16">{selectedTask.title}</h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-                 <div className="space-y-16">
+                 <div className="space-y-16 text-left">
                     <DetailBlock title="Visão Geral & Contexto" content={selectedTask.description} icon={Zap} color="text-yellow-500" />
                     <DetailBlock title="Objetivos Estratégicos" content={selectedTask.objectives} icon={Target} color="text-purple-500" />
                  </div>
-                 <div className="space-y-16">
+                 <div className="space-y-16 text-left">
                     <DetailBlock title="Plano de Execução HD" content={selectedTask.steps} isList icon={ListTodo} color="text-blue-500" />
                     <DetailBlock title="Dúvidas & Clarificações" content={selectedTask.questions || "Aguardando input estratégico do sócio..."} icon={HelpCircle} color="text-zinc-700" />
                  </div>
@@ -364,8 +494,8 @@ const Dashboard = () => {
                     <MetaItem label="Projeto Vinculado" val={selectedTask.project} icon={FolderKanban} />
                  </div>
                  <div className="flex gap-4">
-                    <button onClick={(e) => { setEditingTask(selectedTask); setNewTask({...selectedTask}); setShowModal(true); }} className="px-10 py-6 bg-zinc-100 text-black font-black rounded-3xl uppercase tracking-widest hover:bg-white transition-all shadow-xl pointer-events-auto">Editar Protocolo</button>
-                    <button onClick={() => handleDeleteTask(selectedTask.id)} className="px-10 py-6 bg-red-950/30 text-red-500 border border-red-500/20 rounded-3xl font-black uppercase tracking-widest hover:bg-red-500 hover:text-black transition-all pointer-events-auto">Abortar Missão</button>
+                    <button onClick={(e) => { e.stopPropagation(); setEditingTask(selectedTask); setNewTask({...selectedTask}); setShowModal(true); }} className="px-10 py-6 bg-zinc-100 text-black font-black rounded-3xl uppercase tracking-widest hover:bg-white transition-all shadow-xl pointer-events-auto">Editar Protocolo</button>
+                    <button onClick={(e) => { e.stopPropagation(); handleDeleteTask(selectedTask.id); }} className="px-10 py-6 bg-red-950/30 text-red-500 border border-red-900/50 rounded-3xl font-black uppercase tracking-widest hover:bg-red-900 hover:text-white transition-all pointer-events-auto">Abortar Missão</button>
                  </div>
               </div>
            </div>
@@ -374,7 +504,7 @@ const Dashboard = () => {
 
       {/* 🟡 CREATE / EDIT MODAL */}
       {showModal && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-xl z-[110] flex items-center justify-center p-4 animate-in zoom-in-95 duration-300">
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[110] flex items-center justify-center p-4 animate-in zoom-in-95 duration-300">
            <Card className="w-full max-w-4xl p-12 bg-[#080808] border-zinc-800 shadow-[0_0_100px_rgba(168,85,247,0.1)]">
               <div className="flex justify-between items-center mb-12">
                  <h2 className="text-3xl font-black uppercase italic tracking-tighter text-white">{editingTask ? 'Refinar' : 'Lançar'} Missão</h2>
@@ -394,7 +524,7 @@ const Dashboard = () => {
                 </div>
                 <div className="flex justify-end gap-4 border-t border-zinc-900 pt-10">
                    <button type="button" onClick={closeModal} className="px-8 py-4 text-zinc-500 font-bold uppercase tracking-widest hover:text-white transition-all">Cancelar</button>
-                   <button type="submit" className="px-12 py-5 bg-white text-black font-black rounded-2xl uppercase tracking-widest hover:scale-105 transition-all shadow-2xl">Lançar Missão</button>
+                   <button type="submit" className="px-12 py-5 bg-white text-black font-black rounded-2xl uppercase tracking-widest hover:scale-105 transition-all shadow-2xl">Deploy em HD</button>
                 </div>
               </form>
            </Card>
@@ -404,125 +534,5 @@ const Dashboard = () => {
     </div>
   );
 };
-
-// ——————————————————————————————————————————————————————————————————————————————————————
-// HELPERS
-// ——————————————————————————————————————————————————————————————————————————————————————
-
-const WorkspaceBtn = ({ icon: Icon, label, active, onClick, open, color }) => (
-  <button onClick={onClick} className={`w-full flex items-center gap-5 p-5 rounded-[1.5rem] transition-all ${active ? 'bg-zinc-900 border border-zinc-800 shadow-2xl scale-[1.02]' : 'hover:bg-zinc-900/40'}`}>
-    <Icon size={28} className={`${active ? color : 'text-zinc-700'}`} />
-    {open && <span className={`text-[13px] font-black uppercase tracking-[0.2em] ${active ? 'text-white' : 'text-zinc-600'}`}>{label}</span>}
-  </button>
-);
-
-const SidebarBtn = ({ icon: Icon, label, active, onClick, open }) => (
-  <button onClick={onClick} className={`w-full flex items-center gap-5 p-4 rounded-2xl transition-all ${active ? 'bg-zinc-900/80 text-white border border-zinc-800' : 'text-zinc-600 hover:text-zinc-300 hover:bg-zinc-900/20'}`}>
-    <Icon size={20} />
-    {open && <span className="text-[12px] font-bold uppercase tracking-widest">{label}</span>}
-  </button>
-);
-
-const TaskCardLarge = ({ task, onClick }) => (
-  <div onClick={onClick} className="bg-zinc-900/40 border border-zinc-800 p-10 rounded-[2.5rem] hover:border-purple-500/50 transition-all cursor-pointer group relative overflow-hidden">
-     <div className="flex justify-between items-start mb-8">
-        <Badge variant={task.priority === 'CRÍTICA' ? 'critical' : 'high'}>{task.priority}</Badge>
-        <span className="text-zinc-700 font-mono text-[10px]">#{task.id}</span>
-     </div>
-     <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em] mb-3 block">{task.project}</span>
-     <h4 className="text-3xl font-black text-white uppercase italic tracking-tighter group-hover:text-purple-400 transition-colors mb-6">{task.title}</h4>
-     <div className="flex items-center justify-between pt-8 border-t border-zinc-800/50">
-        <div className="flex items-center gap-4">
-           <div className="w-10 h-10 rounded-2xl bg-zinc-800 flex items-center justify-center text-[12px] font-black text-white">{task.resp[0]}</div>
-           <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">{task.resp}</span>
-        </div>
-        <ArrowRight size={32} className="text-zinc-800 group-hover:text-purple-500 transition-all" />
-     </div>
-  </div>
-);
-
-const TaskKanbanCard = ({ task, onClick, onDelete, onEdit }) => (
-  <div onClick={onClick} className="bg-zinc-950 border border-zinc-800 p-7 rounded-[2.2rem] hover:border-zinc-600 transition-all cursor-pointer group shadow-2xl">
-     <div className="flex justify-between items-start mb-6">
-        <Badge variant={task.priority === 'CRÍTICA' ? 'critical' : 'default'}>{task.priority}</Badge>
-        <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
-           <button onClick={onEdit} className="p-2 hover:bg-zinc-900 rounded-xl text-zinc-600 hover:text-blue-400"><Edit2 size={14} /></button>
-           <button onClick={onDelete} className="p-2 hover:bg-zinc-900 rounded-xl text-zinc-600 hover:text-red-500"><Trash2 size={14} /></button>
-        </div>
-     </div>
-     <span className="text-[9px] font-black text-zinc-700 uppercase tracking-widest mb-2 block">{task.project}</span>
-     <h4 className="text-base font-bold text-zinc-200 uppercase tracking-tight leading-tight mb-8">{task.title}</h4>
-     <div className="flex items-center justify-between pt-5 border-t border-zinc-900">
-        <div className="flex items-center gap-3">
-           <div className="w-7 h-7 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-[10px] font-black text-zinc-500 uppercase italic">{task.resp[0]}</div>
-           <span className="text-[11px] font-bold text-zinc-600 uppercase tracking-tighter">{task.resp}</span>
-        </div>
-        <ChevronRight size={18} className="text-zinc-800 group-hover:text-white" />
-     </div>
-  </div>
-);
-
-const BrainstormItem = ({ agent, time, text, color }) => (
-  <div className="relative pl-10">
-     <div className={`absolute left-0 top-1.5 w-3.5 h-3.5 rounded-full ${color} shadow-[0_0_15px_rgba(168,85,247,0.5)] z-10`} />
-     <div className="flex justify-between items-center mb-1">
-        <span className="text-[11px] font-black text-white uppercase tracking-widest italic">{agent}</span>
-        <span className="text-[10px] font-mono text-zinc-700">{time}</span>
-     </div>
-     <p className="text-[14px] text-zinc-400 leading-relaxed font-medium">{text}</p>
-  </div>
-);
-
-const DetailBlock = ({ title, content, icon: Icon, color, isList = false }) => (
-  <div className="space-y-8">
-     <div className="flex items-center gap-4">
-        <Icon size={32} className={color} />
-        <h3 className="text-xs font-black uppercase tracking-[0.5em] text-zinc-600">{title}</h3>
-     </div>
-     {isList ? (
-       <div className="space-y-4">
-         {content && content.split('\n').map((item, i) => (
-           <div key={i} className="flex gap-8 p-8 bg-zinc-900/30 border border-zinc-900 rounded-[2.5rem] text-2xl text-zinc-300 font-medium">
-             <span className="text-zinc-800 font-black italic">{String(i+1).padStart(2, '0')}</span>
-             <span>{item}</span>
-           </div>
-         ))}
-       </div>
-     ) : (
-       <p className="text-3xl text-zinc-300 leading-relaxed italic font-light border-l-4 border-zinc-900 pl-10">"{content}"</p>
-     )}
-  </div>
-);
-
-const MetaItem = ({ label, val, icon: Icon }) => (
-  <div className="flex items-center gap-4">
-     <div className="p-3 bg-zinc-900 rounded-2xl border border-zinc-800"><Icon size={24} className="text-zinc-600" /></div>
-     <div>
-        <p className="text-[10px] font-black text-zinc-700 uppercase tracking-widest">{label}</p>
-        <p className="text-lg font-bold text-zinc-400 uppercase italic">{val}</p>
-     </div>
-  </div>
-);
-
-const InputHD = ({ label, ...props }) => (
-  <div className="space-y-3">
-    <label className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.2em] ml-1">{label}</label>
-    <input className="w-full bg-zinc-900 border border-zinc-800 rounded-[1.5rem] p-6 text-white focus:border-purple-500 outline-none transition-all shadow-inner font-bold text-lg" {...props} />
-  </div>
-);
-
-const TextAreaHD = ({ label, ...props }) => (
-  <div className="space-y-3">
-    <label className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.2em] ml-1">{label}</label>
-    <textarea className="w-full bg-zinc-900 border border-zinc-800 rounded-[1.5rem] p-6 text-white focus:border-purple-500 outline-none transition-all resize-none shadow-inner font-medium text-lg" {...props} />
-  </div>
-);
-
-const SectionHeader = ({ title, icon: Icon, color = "text-zinc-700" }) => (
-  <div className="flex items-center gap-5">
-    <div className="p-2 bg-zinc-900 rounded-lg border border-zinc-800"><Icon size={20} className={color} /></div>
-    <h3 className="text-sm font-black uppercase tracking-[0.5em] text-zinc-600">{title}</h3>
-  </div>
-);
 
 export default Dashboard;
