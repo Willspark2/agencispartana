@@ -58,7 +58,7 @@ const TransparentImage = ({ src, alt, className, style }) => {
     };
   }, [src]);
 
-  return <img src={imgSrc} alt={alt} className={className} style={{ ...style, mixBlendMode: 'screen' }} />;
+  return <img src={imgSrc} alt={alt} className={className} style={{ ...style, mixBlendMode: 'screen', transform: 'scale(2.2)' }} />;
 };
 
 // ——————————————————————————————————————————————————————————————————————————————————————
