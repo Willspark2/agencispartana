@@ -8,11 +8,15 @@
 
 ## ⚡ Últimas Decisões
 1. **Redesign Premium HD V3:** Reconstrução total do Dashboard focado em escala industrial e estética de elite.
-2. **Logo 100% Transparente:** Restauração do componente Canvas para limpeza de pixels brancos em tempo real. **Escala aumentada para 1.8x na Sidebar.**
-3. **Finanças Funcionais:** Implementação de tabelas de Dívidas e Receitas com campos de entrada (inputs) para gestão real de valores.
-4. **Brainstorm Interativo:** Adicionado campo de input para o Sócio opinar diretamente no feed dos agentes. O feed voltou para a Overview.
-5. **Módulo de Projetos:** Criada a aba dedicada de "Projetos Ativos" para agrupar tarefas por cliente e garantir a execução autônoma.
-6. **Correção de Botões:** Restaurada a funcionalidade de edição e exclusão de missões no Dashboard.
+2. **Logo 100% Transparente:** Restauração do componente Canvas para limpeza de pixels brancos em tempo real. **Escala aumentada para 3.0x na Sidebar.**
+3. **Fim das Scrollbars:** Implementado CSS global para ocultar barras de rolagem desnecessárias e manter a interface limpa.
+4. **CRUD de Projetos Ativos:** O módulo de projetos agora é 100% dinâmico (Adicionar, Editar, Excluir e Concluir).
+5. **Brainstorm Metas de Vida:** Iniciado plano de guerra pessoal. Midas definiu estratégia 70/30 para dívidas. Ícaro planejou integração via Webhooks/Clerk para o "Seu Costela".
+
+## 📋 Próximos Passos
+- **Integração Supabase:** Substituir o estado local pelas tabelas reais criadas pelo script `SUPABASE_SETUP.sql`.
+- **Acesso Seu Costela:** Aguardar credenciais do projeto externo para o Ícaro iniciar o pipeline de dados.
+- **Módulo de Faturamento:** Midas deve detalhar os campos de ROI baseados na planilha Excel.
 
 ## 📋 Próximos Passos
 - **Integração Supabase:** Começar a salvar os dados de hábitos e tarefas nas tabelas reais do Supabase.
