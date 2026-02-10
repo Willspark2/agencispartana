@@ -34,17 +34,17 @@ def run_mcp_session():
         }
     })
 
-    # Try get_project_api_keys
+    # Try get_project
     res = send_request({
         "jsonrpc": "2.0",
         "id": 2,
         "method": "tools/call",
         "params": {
-            "name": "get_project_api_keys",
+            "name": "get_project",
             "arguments": {"project_id": "szsnzqpcgcuaisefvrog"}
         }
     })
-    print("API Keys:", json.dumps(res, indent=2))
+    print("Get Project:", json.dumps(res, indent=2))
 
     process.terminate()
 
