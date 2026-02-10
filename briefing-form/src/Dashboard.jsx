@@ -18,8 +18,7 @@ import {
   X,
   Calendar,
   Trash2,
-  Edit2,
-  Check
+  Edit2
 } from 'lucide-react';
 
 // ——————————————————————————————————————————————————————————————————————————————————————
@@ -52,7 +51,6 @@ const Card = ({ children, className = '' }) => (
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('agency');
-  const [viewMode, setViewMode] = useState('kanban');
   const [showModal, setShowModal] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [newTask, setNewTask] = useState({ title: '', priority: 'Normal', resp: '', status: 'todo' });
@@ -150,10 +148,10 @@ const Dashboard = () => {
         </div>
 
         <div className="bg-zinc-900 p-1 rounded-xl border border-zinc-800 flex gap-2">
-          <button onClick={() => setActiveTab('agency')} className={`flex items-center gap-2 px-6 py-2 rounded-lg text-xs font-black transition-all ${activeTab === 'agency' ? 'bg-zinc-100 text-black' : 'text-zinc-500 hover:text-zinc-300'}`}>
+          <button onClick={() => setActiveTab('agency')} className={`flex items-center gap-2 px-6 py-2 rounded-lg text-xs font-black transition-all ${activeTab === 'agency' ? 'bg-zinc-100 text-black shadow-lg shadow-white/5' : 'text-zinc-500 hover:text-zinc-300'}`}>
             <Briefcase size={14} /> AGÊNCIA
           </button>
-          <button onClick={() => setActiveTab('personal')} className={`flex items-center gap-2 px-6 py-2 rounded-lg text-xs font-black transition-all ${activeTab === 'personal' ? 'bg-zinc-100 text-black' : 'text-zinc-500 hover:text-zinc-300'}`}>
+          <button onClick={() => setActiveTab('personal')} className={`flex items-center gap-2 px-6 py-2 rounded-lg text-xs font-black transition-all ${activeTab === 'personal' ? 'bg-zinc-100 text-black shadow-lg shadow-white/5' : 'text-zinc-500 hover:text-zinc-300'}`}>
             <User size={14} /> PESSOAL
           </button>
         </div>
@@ -200,15 +198,11 @@ const Dashboard = () => {
         {/* Kanban / CRM */}
         <div className="lg:col-span-3">
           <div className="flex justify-between items-center mb-6">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 text-zinc-200">
-                <Target size={18} className="text-zinc-500" />
-                <h2 className="text-sm font-black uppercase tracking-widest">CRM {activeTab === 'agency' ? 'Vendas' : 'Vida'}</h2>
-              </div>
-              <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-0.5 flex gap-1">
-                <button onClick={() => setViewMode('list')} className={`p-1.5 rounded-md transition-all ${viewMode === 'list' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-600'}`}><Activity size={14} /></button>
-                <button onClick={() => setViewMode('kanban')} className={`p-1.5 rounded-md transition-all ${viewMode === 'kanban' ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-600'}`}><Layout size={14} /></button>
-              </div>
+            <div className="flex items-center gap-4 text-zinc-200">
+              <Target size={18} className="text-zinc-500" />
+              <h2 className="text-sm font-black uppercase tracking-widest text-zinc-400">
+                CRM <span className="text-zinc-700">/</span> {activeTab === 'agency' ? 'Vendas' : 'Vida'}
+              </h2>
             </div>
             <button onClick={() => setShowModal(true)} className="text-[10px] bg-zinc-100 text-black font-black px-5 py-2 rounded-lg hover:bg-white transition-all uppercase tracking-widest flex items-center gap-2">
               <Plus size={14} /> Missão
@@ -235,6 +229,9 @@ const Dashboard = () => {
                       onEdit={() => openEditModal(task)}
                     />
                   ))}
+                  {currentTasks.filter(t => t.status === col.id).length === 0 && (
+                    <div className="flex flex-col items-center justify-center h-32 opacity-10 italic text-[10px]">Vazio</div>
+                  )}
                 </div>
               </div>
             ))}
@@ -242,10 +239,18 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Stats Bar */}
+      <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <MiniStat label="Conversão" val="12%" icon={Activity} />
+        <MiniStat label="PIX Week" val="R$ 0,00" icon={Wallet} color="text-emerald-400" />
+        <MiniStat label="Motor" val="Ollama" icon={Database} />
+        <MiniStat label="Status" val="Operacional" icon={Target} color="text-purple-400" />
+      </div>
+
       {/* Modal Nova/Editar Atividade */}
       {showModal && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <Card className="w-full max-w-md p-8 border-zinc-700 bg-zinc-950 shadow-[0_0_50px_rgba(0,0,0,1)]">
+          <Card className="w-full max-w-md p-8 border-zinc-700 bg-zinc-950 shadow-[0_0_100px_rgba(0,0,0,1)]">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-xl font-black uppercase italic tracking-tighter">{editingTask ? 'Editar Missão' : 'Nova Missão'}</h2>
               <button onClick={closeModal} className="text-zinc-600 hover:text-white"><X size={20} /></button>
@@ -310,6 +315,18 @@ const FeedItem = ({ agent, text, color }) => (
     <div className="flex flex-col">
       <span className="text-white text-[9px] font-black uppercase tracking-tighter italic mb-1">{agent}</span>
       <p className="text-[10px] text-zinc-500 leading-tight bg-zinc-900/30 p-2 rounded-lg border border-zinc-800/50">{text}</p>
+    </div>
+  </div>
+);
+
+const MiniStat = ({ label, val, icon: Icon, color = "text-white" }) => (
+  <div className="bg-zinc-900/30 border border-zinc-800/50 p-4 rounded-xl flex items-center gap-4 group hover:bg-zinc-900 transition-all">
+    <div className="p-2 bg-black/40 rounded-lg border border-zinc-800 group-hover:border-zinc-700">
+      <Icon size={14} className="text-zinc-500" />
+    </div>
+    <div>
+      <span className={`text-sm font-black block uppercase italic ${color}`}>{val}</span>
+      <span className="text-[8px] text-zinc-600 font-bold uppercase tracking-widest">{label}</span>
     </div>
   </div>
 );
