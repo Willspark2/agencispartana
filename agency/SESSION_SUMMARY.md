@@ -7,11 +7,11 @@
 - **Ferramentas:** Supabase, n8n, Shadcn/ui e Context7 100% saudáveis.
 
 ## ⚡ Últimas Decisões
-1. **Redesign HD V2:** Implementada Sidebar Hamburger com alternador de ecossistemas (Profissional/Pessoal).
-2. **Módulo Hábitos HD:** Criado rastreador de hábitos de 30 dias na aba Pessoal para alta performance.
-3. **CRM de Projetos:** Tarefas agora são vinculadas a projetos/clientes específicos para clareza total.
-4. **Higiene de UI:** Removida visualização de motor (Ollama) da tela; foco em selo "Performance HD" e "Supabase Live".
-5. **Estrutura Financeira:** Adicionadas tabs para Dívidas, Salário e Metas no modo Pessoal.
+1. **Redesign Premium HD V3:** Reconstrução total do Dashboard focado em escala industrial e estética de elite.
+2. **Logo 100% Transparente:** Restauração do componente Canvas para limpeza de pixels brancos em tempo real.
+3. **Finanças Funcionais:** Implementação de tabelas de Dívidas e Receitas com campos de entrada (inputs) para gestão real de valores.
+4. **Brainstorm Centralizado:** O feed de interação entre agentes voltou para a página principal (Overview) para visibilidade total do sócio.
+5. **Hierarquia PRD:** Sidebar organizada seguindo rigorosamente o escopo do plano `plan-001`.
 
 ## 📋 Próximos Passos
 - **Integração Supabase:** Começar a salvar os dados de hábitos e tarefas nas tabelas reais do Supabase.
