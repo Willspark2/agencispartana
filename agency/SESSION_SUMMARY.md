@@ -1,20 +1,18 @@
 # 🧠 RESUMO EXECUTIVO (Memória de Curto Prazo)
-*Última Atualização: 2026-02-10 02:15*
+*Última Atualização: 2026-02-10 03:45*
 
 ## 🎯 Estado Atual
-- **Infraestrutura:** HQ e Dashboards operacionais. Repositórios divididos em HQ (`agencispartana`) e Entrega (`spartana_shared`).
-- **Equipe:** Erika (Head), Ícaro (Ops), Maya (Copy), Midas (Financeiro).
-- **Ferramentas:** MCP Supabase, Context7, n8n, shadcn/ui e Stitch integrados.
-- **Segurança:** Gestão dinâmica de ferramentas (75/100 tools ativos). Fallback local (Ollama) definido.
+- **Infraestrutura:** HQ Operacional. Roadmap MVP `plan-001` aprovado e registrado em `directives/roadmap_mvp.md`.
+- **Equipe:** Erika (Head), Ícaro (Ops), Maya (Copy), Midas (Financeiro) em prontidão HD.
+- **Ferramentas:** Supabase, n8n, Shadcn/ui e Context7 100% saudáveis.
 
 ## ⚡ Últimas Decisões
-1. **Fallback Ollama:** Contingência para erro 429 e heartbeats rotineiros (custo zero).
-2. **Logo Oficial:** Imagem processada via Canvas para transparência real no Dashboard.
-3. **Protocolo de Cadência:** Agentes operam em pulso de 15 minutos via leitura de CRM.
-4. **Brainstorm Inter-Agentes:** Fluxo de colaboração via arquivo central em `.tmp/` ativo e visível no Dashboard.
-5. **Treinamento de Elite (Missão HD):** Implementado o padrão de "Alta Definição" para tarefas. Agentes treinados para executar com o máximo de detalhamento e o mínimo de perguntas, seguindo a diretiva `protocolo_missao_hd.md`.
+1. **Unificação Estratégica:** O QG agora foca no desenvolvimento do "App Unificado Spartana" (Agência + Vida).
+2. **Redesign HD:** Dashboard com Sidebar Hamburger e Telão de Detalhes implementado e sincronizado com GitHub.
+3. **Deploy Ready:** Estrutura `vercel.json` pronta para hospedar o Dashboard online.
+4. **Brainstorm Prospecção:** Estratégia "Google Invisível" integrada ao Roadmap como primeiro grande fluxo do CRM.
 
 ## 📋 Próximos Passos
-- Implementar interatividade de adição de tarefas no Dashboard (UI) vinculada ao Supabase.
-- Criar script `execution/find_local_leads.py` baseado no brainstorm de prospecção.
-- Validar templates de "Dossiê de Invisibilidade" para envio automático.
+- **Arquitetura de Dados:** Ícaro deve desenhar o esquema de tabelas no Supabase seguindo o Roadmap MVP.
+- **Persistent CRM:** Substituir o estado local do Dashboard por chamadas reais ao Supabase.
+- **Módulo Financeiro:** Midas deve detalhar a lógica do RF08 (Lucratividade) e RF16 (Hábitos/Dívidas).
