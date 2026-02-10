@@ -54,6 +54,14 @@ const Dashboard = () => {
     { id: 3, name: 'Estética Bella Donna', niche: 'Beleza', status: 'Reunião Marcada', gmn: 'Ruim', contact: '(31) 98888-0003' },
   ]);
 
+  const sidebarLinks = [
+    { id: 'prospec', label: 'Operação Hunter', icon: Target },
+    { id: 'dashboard', label: 'Comando', icon: Activity },
+    { id: 'kanban', label: 'CRM / Kanban', icon: FolderKanban },
+    { id: 'projects', label: 'Projetos Ativos', icon: Layout },
+    { id: 'finance', label: 'Dívidas & Contas', icon: CreditCard },
+  ];
+
   return (
     <div className="min-h-screen bg-[#020202] text-zinc-400 font-sans flex overflow-hidden">
       <style>{`::-webkit-scrollbar { display: none; } * { scrollbar-width: none; }`}</style>
@@ -66,12 +74,15 @@ const Dashboard = () => {
               {isSidebarOpen && <span className="font-black text-white text-2xl uppercase tracking-tighter italic">Spartana</span>}
            </div>
            <nav className="space-y-4">
-              <button onClick={() => setActiveTab('prospec')} className={`w-full flex items-center gap-6 p-5 rounded-3xl transition-all ${activeTab === 'prospec' ? 'bg-zinc-900 text-white border border-zinc-800' : 'text-zinc-600 hover:text-zinc-300'}`}>
-                <Target size={22} /> {isSidebarOpen && <span className="text-[12px] font-black uppercase tracking-widest">Operação Hunter</span>}
-              </button>
-              <button onClick={() => setActiveTab('dashboard')} className={`w-full flex items-center gap-6 p-5 rounded-3xl transition-all ${activeTab === 'dashboard' ? 'bg-zinc-900 text-white border border-zinc-800' : 'text-zinc-600 hover:text-zinc-300'}`}>
-                <Activity size={22} /> {isSidebarOpen && <span className="text-[12px] font-black uppercase tracking-widest">Comando</span>}
-              </button>
+              {sidebarLinks.map(link => (
+                <button 
+                  key={link.id}
+                  onClick={() => setActiveTab(link.id)} 
+                  className={`w-full flex items-center gap-6 p-5 rounded-3xl transition-all ${activeTab === link.id ? 'bg-zinc-900 text-white border border-zinc-800' : 'text-zinc-600 hover:text-zinc-300'}`}
+                >
+                  <link.icon size={22} /> {isSidebarOpen && <span className="text-[12px] font-black uppercase tracking-widest">{link.label}</span>}
+                </button>
+              ))}
            </nav>
         </div>
       </aside>
