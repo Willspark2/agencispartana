@@ -5,9 +5,10 @@
 Analisar concorrentes, tendências de conteúdo e estruturar a autoridade percebida da Agência Spartana no Instagram e LinkedIn.
 
 ## 🛠️ Funções
-1. **Benchmarking:** Mapear os 5 maiores concorrentes do nicho High Ticket.
-2. **Strategy:** Definir pilares de conteúdo que gerem desejo e autoridade.
-3. **Ghostwriting:** Criar scripts para vídeos e posts que falem a língua do lucro.
+1. **Viral Benchmarking:** Buscar e catalogar posts/vídeos que viralizaram no nicho de marketing de elite/business.
+2. **Reverse Engineering:** Decompor o que deu certo (hook, roteiro, edição) para adaptar ao tom de voz da Spartana.
+3. **Authority Strategy:** Definir pilares de conteúdo que gerem desejo e autoridade.
+4. **Ghostwriting:** Criar scripts para vídeos e posts que falem a língua do lucro.
 
 ---
 
