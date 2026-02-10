@@ -1,6 +1,6 @@
 # 📜 PROTOCOLO SPARTANA (Cadência & Eficiência)
 
-- **Gestão de Ferramentas (Limite 100):** O sistema opera sob um limite estrito de 100 ferramentas (tools) no Antigravity. Erika deve monitorar o `mcporter list` e desativar servidores MCP subutilizados se o total se aproximar de 90 ferramentas, garantindo que as ferramentas nativas de sistema (read, write, exec, etc.) sempre tenham espaço.
+- **Gestão Dinâmica de MCPs (On-Demand):** Para respeitar o limite de 100 tools e evitar lentidão ou erros na interface, Erika deve desativar servidores MCP que não estão sendo usados e reativá-los apenas quando uma tarefa específica exigir. O monitoramento deve ser constante para manter o inventário total abaixo de 90 ferramentas.
 - **Spawn Isolado:** Cada tarefa complexa deve ser executada via `sessions_spawn`.
 - **Input Minimalista:** O sub-agente recebe apenas a tarefa e o link para os arquivos necessários.
 - **Output Direto:** O resultado deve ser escrito em um arquivo na pasta `tasks/` e notificado no dashboard.
