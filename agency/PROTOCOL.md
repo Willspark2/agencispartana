@@ -1,6 +1,6 @@
 # 📜 PROTOCOLO SPARTANA (Cadência & Eficiência)
 
-## 1. Gestão de Contexto (Economia de Tokens)
+- **Gestão de Ferramentas (Limite 100):** O sistema opera sob um limite estrito de 100 ferramentas (tools) no Antigravity. Erika deve monitorar o `mcporter list` e desativar servidores MCP subutilizados se o total se aproximar de 90 ferramentas, garantindo que as ferramentas nativas de sistema (read, write, exec, etc.) sempre tenham espaço.
 - **Spawn Isolado:** Cada tarefa complexa deve ser executada via `sessions_spawn`.
 - **Input Minimalista:** O sub-agente recebe apenas a tarefa e o link para os arquivos necessários.
 - **Output Direto:** O resultado deve ser escrito em um arquivo na pasta `tasks/` e notificado no dashboard.
