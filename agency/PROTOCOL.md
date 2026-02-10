@@ -6,7 +6,7 @@
 - **Output Direto:** O resultado deve ser escrito em um arquivo na pasta `tasks/` e notificado no dashboard.
 - **Fallback Automático (Ollama):** Caso qualquer agente operacional (Ícaro, Maya, Midas) receba um erro 429 (quota exhausted), ele deve tentar re-executar a tarefa utilizando o modelo local Ollama para garantir a entrega sem interrupção.
 - **Memória de Curto Prazo (Resumo Executivo):** Antes de iniciar qualquer tarefa, o agente deve ler o arquivo `agency/SESSION_SUMMARY.md`. Este arquivo contém o resumo destilado das últimas decisões e o estado atual da agência, evitando que o agente precise ler todo o histórico de conversas e logs.
-- **Heartbeat de Cadência (15 min):** Os agentes operacionais são "acordados" a cada 15 minutos via Cron ou Heartbeat.
+- **Heartbeat de Cadência (15 min):** Os agentes operacionais são "acordados" a cada 15 minutos via Cron ou Heartbeat. **Para esta verificação de rotina e tarefas de baixa complexidade, o modelo padrão deve ser o Ollama local**, economizando os tokens dos modelos premium para a execução de alta performance.
 
 ## 2. Hierarquia e Comunicação
 - **Erika (Head):** Interface direta com o Will. Erika recebe as ordens, define a estratégia e delega para os agentes operacionais no CRM. Erika não "suja as mãos" no código ou copy, ela gerencia a excelência.

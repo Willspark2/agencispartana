@@ -10,7 +10,7 @@
 ## ⚡ Últimas Decisões
 1. **Fallback Ollama:** Implementado como contingência para erro 429 nos agentes.
 2. **Logo Oficial:** Imagem atualizada pelo Will com transparência e escala 150% no Dashboard.
-3. **Protocolo de Cadência:** Agentes operam em pulso de 15 minutos via leitura de CRM.
+3. **Protocolo de Cadência:** Agentes operam em pulso de 15 minutos via leitura de CRM. **Utilização prioritária do Ollama para heartbeats e tarefas rotineiras.**
 
 ## 📋 Próximos Passos
 - Implementar interatividade de adição de tarefas no Dashboard (UI).
