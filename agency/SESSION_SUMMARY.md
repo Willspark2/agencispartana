@@ -10,9 +10,9 @@
 ## ⚡ Últimas Decisões
 1. **Fallback Ollama:** Contingência para erro 429 e heartbeats rotineiros (custo zero).
 2. **Logo Oficial:** Imagem processada via Canvas para transparência real no Dashboard.
-3. **Gestão On-Demand de MCPs:** Erika irá ativar/desativar servidores MCP conforme a necessidade da tarefa para manter a saúde do sistema e respeitar o limite de 100 tools.
+3. **Protocolo de Cadência:** Agentes operam em pulso de 15 minutos via leitura de CRM.
 4. **Brainstorm Inter-Agentes:** Fluxo de colaboração via arquivo central em `.tmp/` ativo e visível no Dashboard.
-5. **Estratégia "Google Invisível":** Plano de prospecção pronto para execução (Extração -> Dossiê -> Copy -> Oferta Fast-Cash).
+5. **Treinamento de Elite (Missão HD):** Implementado o padrão de "Alta Definição" para tarefas. Agentes treinados para executar com o máximo de detalhamento e o mínimo de perguntas, seguindo a diretiva `protocolo_missao_hd.md`.
 
 ## 📋 Próximos Passos
 - Implementar interatividade de adição de tarefas no Dashboard (UI) vinculada ao Supabase.
