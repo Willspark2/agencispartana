@@ -42,10 +42,16 @@ const SectionHeader = ({ title, icon: Icon, color }) => (
 );
 
 // --- COMPONENTE PRINCIPAL ---
-const Dashboard = ({ initialTab = 'dashboard' }) => {
-  const [activeTab, setActiveTab] = useState(initialTab);
+const Dashboard = ({ initialTab }) => {
+  const [activeTab, setActiveTab] = useState('dashboard');
   const [activeWorkspace, setActiveWorkspace] = useState('agency');
   const [isSidebarOpen, setSidebarOpen] = useState(true);
+
+  useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
 
   // Leads para Prospecção (Mapeados pelo Ícaro)
   const [leads, setLeads] = useState([
