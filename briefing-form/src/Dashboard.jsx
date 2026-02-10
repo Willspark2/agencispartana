@@ -66,21 +66,21 @@ const Dashboard = ({ initialTab = 'dashboard' }) => {
     <div className="min-h-screen bg-[#020202] text-zinc-400 font-sans flex overflow-hidden">
       <style>{`::-webkit-scrollbar { display: none; } * { scrollbar-width: none; }`}</style>
       
-      {/* SIDEBAR SIMPLIFICADA PARA O CONTEXTO */}
-      <aside className={`${isSidebarOpen ? 'w-80' : 'w-24'} bg-[#080808] border-r border-zinc-900 transition-all duration-500 flex flex-col z-50`}>
-        <div className="p-10 flex flex-col gap-10">
-           <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-purple-600 rounded-2xl flex items-center justify-center font-black text-white">S</div>
-              {isSidebarOpen && <span className="font-black text-white text-2xl uppercase tracking-tighter italic">Spartana</span>}
+      {/* SIDEBAR */}
+      <aside className={`${isSidebarOpen ? 'w-64' : 'w-20'} bg-[#080808] border-r border-zinc-900 transition-all duration-500 flex flex-col z-50`}>
+        <div className="p-6 flex flex-col gap-8">
+           <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center font-black text-white text-lg shadow-lg">S</div>
+              {isSidebarOpen && <span className="font-black text-white text-xl uppercase tracking-tighter italic">Spartana</span>}
            </div>
-           <nav className="space-y-4">
+           <nav className="space-y-2">
               {sidebarLinks.map(link => (
                 <button 
                   key={link.id}
                   onClick={() => setActiveTab(link.id)} 
-                  className={`w-full flex items-center gap-6 p-5 rounded-3xl transition-all ${activeTab === link.id ? 'bg-zinc-900 text-white border border-zinc-800' : 'text-zinc-600 hover:text-zinc-300'}`}
+                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all ${activeTab === link.id ? 'bg-zinc-900 text-white border border-zinc-800 shadow-lg shadow-black/40' : 'text-zinc-600 hover:text-zinc-300'}`}
                 >
-                  <link.icon size={22} /> {isSidebarOpen && <span className="text-[12px] font-black uppercase tracking-widest">{link.label}</span>}
+                  <link.icon size={18} /> {isSidebarOpen && <span className="text-[11px] font-black uppercase tracking-widest">{link.label}</span>}
                 </button>
               ))}
            </nav>
@@ -89,58 +89,57 @@ const Dashboard = ({ initialTab = 'dashboard' }) => {
 
       {/* MAIN AREA */}
       <main className="flex-1 flex flex-col relative overflow-hidden bg-black">
-        <header className="h-32 border-b border-zinc-900/50 flex items-center justify-between px-16 bg-black/60 backdrop-blur-3xl z-40">
-          <h2 className="text-5xl font-black text-white uppercase italic tracking-tighter">
-            <span className="text-red-600">MODO GUERRA</span> / CAIXA RÁPIDO
+        <header className="h-20 border-b border-zinc-900/50 flex items-center justify-between px-10 bg-black/60 backdrop-blur-3xl z-40">
+          <h2 className="text-2xl font-black text-white uppercase italic tracking-tighter">
+            <span className="text-red-600">MODO GUERRA</span> / <span className="text-zinc-500">CAIXA RÁPIDO</span>
           </h2>
-          <div className="flex gap-6">
-             <div className="bg-red-500/10 border border-red-500/20 px-8 py-4 rounded-2xl flex items-center gap-4">
-                <Rocket size={20} className="text-red-500" />
-                <span className="text-[11px] font-black text-red-500 uppercase tracking-widest italic">Prioridade Máxima</span>
+          <div className="flex gap-4">
+             <div className="bg-red-500/10 border border-red-500/20 px-4 py-2 rounded-xl flex items-center gap-3">
+                <Rocket size={16} className="text-red-500" />
+                <span className="text-[9px] font-black text-red-500 uppercase tracking-widest italic">Prioridade Máxima</span>
              </div>
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-16 z-30">
+        <div className="flex-1 overflow-y-auto p-10 z-30">
           {activeTab === 'prospec' && (
-            <div className="space-y-20 animate-in fade-in duration-700 max-w-7xl mx-auto">
-               <div className="flex flex-col gap-6 border-b border-zinc-900 pb-12">
-                 <h3 className="text-8xl font-black text-white uppercase italic tracking-tighter leading-[0.8]">Operação <br /><span className="text-red-600 text-[100px]">HUNTER</span></h3>
-                 <p className="text-zinc-600 uppercase tracking-[0.6em] font-black text-sm ml-3 italic">Mapeamento de Oportunidades GMN (Google Invisível)</p>
+            <div className="space-y-12 animate-in fade-in duration-700 max-w-5xl mx-auto">
+               <div className="flex flex-col gap-3 border-b border-zinc-900 pb-8">
+                 <h3 className="text-5xl font-black text-white uppercase italic tracking-tighter leading-none">Operação <span className="text-red-600">HUNTER</span></h3>
+                 <p className="text-zinc-600 uppercase tracking-[0.4em] font-black text-[10px] ml-1 italic">Mapeamento de Oportunidades GMN (Google Invisível)</p>
                </div>
 
-               <div className="grid grid-cols-1 gap-10">
+               <div className="grid grid-cols-1 gap-6">
                   {leads.map(lead => (
-                    <Card key={lead.id} className="p-12 border-zinc-800 bg-zinc-950/40 group relative">
+                    <Card key={lead.id} className="p-6 border-zinc-800 bg-zinc-950/40 group relative">
                        <div className="flex justify-between items-center">
-                          <div className="space-y-4">
-                             <div className="flex items-center gap-6">
-                                <h4 className="text-4xl font-black text-white uppercase italic tracking-tighter leading-none">{lead.name}</h4>
+                          <div className="space-y-2">
+                             <div className="flex items-center gap-4">
+                                <h4 className="text-xl font-black text-white uppercase italic tracking-tighter leading-none">{lead.name}</h4>
                                 <Badge variant={lead.gmn === 'Sem Site' ? 'critical' : 'high'}>GMN: {lead.gmn}</Badge>
                              </div>
-                             <div className="flex items-center gap-8 text-zinc-600 text-sm font-black uppercase tracking-widest">
-                                <span className="flex items-center gap-2"><MapPin size={16} /> {lead.niche}</span>
-                                <span className="flex items-center gap-2"><Database size={16} /> {lead.contact}</span>
+                             <div className="flex items-center gap-6 text-zinc-600 text-[10px] font-black uppercase tracking-widest">
+                                <span className="flex items-center gap-1.5"><MapPin size={12} /> {lead.niche}</span>
+                                <span className="flex items-center gap-1.5"><Database size={12} /> {lead.contact}</span>
                              </div>
                           </div>
                           
-                          <div className="flex gap-4">
-                             <a href={`https://wa.me/${lead.contact.replace(/\D/g, '')}?text=Olá, notei que sua empresa não aparece bem no Google...`} target="_blank" className="bg-emerald-600 hover:bg-emerald-500 text-black px-10 py-5 rounded-3xl text-[14px] font-black uppercase tracking-widest flex items-center gap-3 transition-all shadow-xl">
-                               <MessageSquare size={20} /> Atacar (WhatsApp)
+                          <div className="flex gap-3">
+                             <a href={`https://wa.me/${lead.contact.replace(/\D/g, '')}?text=Olá, notei que sua empresa não aparece bem no Google...`} target="_blank" className="bg-emerald-600 hover:bg-emerald-500 text-black px-6 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest flex items-center gap-2 transition-all shadow-lg shadow-emerald-900/10">
+                               <MessageSquare size={16} /> Atacar (WhatsApp)
                              </a>
-                             <button className="bg-zinc-900 text-zinc-500 p-5 rounded-3xl border border-zinc-800 hover:text-white transition-all"><ChevronRight size={24} /></button>
+                             <button className="bg-zinc-900 text-zinc-500 p-3 rounded-2xl border border-zinc-800 hover:text-white transition-all"><ChevronRight size={20} /></button>
                           </div>
                        </div>
                        
-                       {/* BARRA DE STATUS DO LEAD */}
-                       <div className="mt-10 pt-8 border-t border-zinc-900 flex items-center justify-between">
-                          <div className="flex items-center gap-3">
-                             <div className={`w-2 h-2 rounded-full ${lead.status === 'Novo' ? 'bg-blue-500' : 'bg-orange-500'} animate-pulse`} />
-                             <span className="text-[10px] font-black text-zinc-700 uppercase tracking-widest">Status: {lead.status}</span>
+                       <div className="mt-6 pt-4 border-t border-zinc-900 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                             <div className={`w-1.5 h-1.5 rounded-full ${lead.status === 'Novo' ? 'bg-blue-500' : 'bg-orange-500'} animate-pulse`} />
+                             <span className="text-[9px] font-black text-zinc-700 uppercase tracking-widest">Status: {lead.status}</span>
                           </div>
-                          <div className="flex -space-x-2">
-                             <div className="w-8 h-8 rounded-full bg-purple-600 border-2 border-zinc-950 flex items-center justify-center text-[10px] font-black text-white uppercase shadow-xl" title="Maya">M</div>
-                             <div className="w-8 h-8 rounded-full bg-blue-600 border-2 border-zinc-950 flex items-center justify-center text-[10px] font-black text-white uppercase shadow-xl" title="Ícaro">I</div>
+                          <div className="flex -space-x-1.5">
+                             <div className="w-6 h-6 rounded-lg bg-purple-600 border-2 border-zinc-950 flex items-center justify-center text-[8px] font-black text-white uppercase shadow-lg" title="Luna">L</div>
+                             <div className="w-6 h-6 rounded-lg bg-blue-600 border-2 border-zinc-950 flex items-center justify-center text-[8px] font-black text-white uppercase shadow-lg" title="Ícaro">I</div>
                           </div>
                        </div>
                     </Card>
@@ -148,13 +147,13 @@ const Dashboard = ({ initialTab = 'dashboard' }) => {
                </div>
 
                {/* FRAMEWORK DE PITCH RÁPIDO */}
-               <Card className="p-16 border-red-500/20 bg-red-500/5 shadow-2xl mt-20">
-                  <SectionHeader title="O Script de Ego (Maya Copy)" icon={Zap} color="text-red-500" />
-                  <div className="bg-black/40 p-10 rounded-[2rem] border border-zinc-900 italic text-2xl font-medium text-zinc-300 leading-relaxed">
+               <Card className="p-8 border-red-500/20 bg-red-500/5 shadow-xl mt-12">
+                  <SectionHeader title="Script de Ego (Maya Copy)" icon={Zap} color="text-red-500" />
+                  <div className="bg-black/40 p-6 rounded-2xl border border-zinc-900 italic text-lg font-medium text-zinc-300 leading-relaxed">
                     "Olá, sou o Will da Spartana. Vi que sua clínica é excelente, mas o Google está 'escondendo' você de pelo menos 10 novos clientes por semana. Eu já resolvi isso para outras empresas aqui e posso te mostrar em 5 minutos como recuperar esses clientes. Podemos falar?"
                   </div>
-                  <p className="mt-8 text-zinc-600 font-black uppercase tracking-widest text-xs flex items-center gap-3">
-                    <MousePointer2 size={16} /> Dica da Maya: Foque na perda de dinheiro, não na venda do serviço.
+                  <p className="mt-4 text-zinc-600 font-black uppercase tracking-widest text-[9px] flex items-center gap-2">
+                    <MousePointer2 size={12} /> Dica da Maya: Foque na perda de dinheiro, não na venda do serviço.
                   </p>
                </Card>
             </div>
