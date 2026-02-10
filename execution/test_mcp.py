@@ -34,38 +34,17 @@ def run_mcp_session():
         }
     })
 
-    # Try invoke_function with name 'sql'
-    sql = """
-    CREATE TABLE IF NOT EXISTS missions (
-        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-        title TEXT NOT NULL,
-        description TEXT,
-        objectives JSONB,
-        steps JSONB,
-        outcome TEXT,
-        questions JSONB,
-        priority TEXT,
-        status TEXT DEFAULT 'pending',
-        category TEXT,
-        project TEXT,
-        resp TEXT,
-        created_at TIMESTAMPTZ DEFAULT now()
-    );
-    """
-    
+    # Try get_project_api_keys
     res = send_request({
         "jsonrpc": "2.0",
-        "id": 3,
+        "id": 2,
         "method": "tools/call",
         "params": {
-            "name": "invoke_function",
-            "arguments": {
-                "function": "sql",
-                "params": {"query": sql}
-            }
+            "name": "get_project_api_keys",
+            "arguments": {"project_id": "szsnzqpcgcuaisefvrog"}
         }
     })
-    print("Invoke Response:", json.dumps(res, indent=2))
+    print("API Keys:", json.dumps(res, indent=2))
 
     process.terminate()
 
