@@ -8,7 +8,8 @@
 | Agente | Especialidade | Status | Atividade Atual |
 | :--- | :--- | :--- | :--- |
 | **Erika** | Head de Performance | 🟢 Online | Gerenciando Operação |
-| **Ícaro** | Architect / Ops | 🟢 Online | Configurando CRM |
+| **Ícaro** | Architect / Ops | 🟢 Online | MCP Supabase/Context7 Ativos |
+| **Midas** | Financeiro | 🟢 Online | Analisando Cenário |
 | **Maya** | Copy / Social | ⚪ Offline | - |
 
 ---
