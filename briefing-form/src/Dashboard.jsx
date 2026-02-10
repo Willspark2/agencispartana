@@ -48,10 +48,10 @@ const Dashboard = () => {
         <div>
           <h1 className="text-4xl font-bold tracking-tighter text-white flex items-center gap-6">
             <div className="w-24 h-24 relative flex items-center justify-center overflow-hidden">
-              <TransparentImage
+              <img
                 src="/logo_spartana.jpg"
                 alt="Logo"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain mix-blend-screen scale-150 brightness-125 contrast-125"
               />
             </div>
             SPARTANA {activeTab === 'agency' ? 'OPERATIONS' : 'PERSONAL'}
@@ -195,55 +195,5 @@ const Dashboard = () => {
 };
 
 const CheckCircle2 = ({ size, className }) => <Activity size={size} className={className} />;
-
-const TransparentImage = ({ src, alt, className, style }) => {
-  const [imgSrc, setImgSrc] = useState(src);
-  const [processed, setProcessed] = useState(false);
-
-  React.useEffect(() => {
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    img.src = src;
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const data = imgData.data;
-
-      let hasWhite = false;
-      for (let i = 0; i < data.length; i += 4) {
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
-        // If pixel is very bright (white background), make it transparent
-        if (r > 200 && g > 200 && b > 200) {
-          data[i + 3] = 0;
-          hasWhite = true;
-        }
-      }
-
-      if (hasWhite) {
-        ctx.putImageData(imgData, 0, 0);
-        setImgSrc(canvas.toDataURL());
-        setProcessed(true);
-      }
-    };
-  }, [src]);
-
-  return (
-    <img
-      src={imgSrc}
-      alt={alt}
-      className={className}
-      style={{
-        ...style,
-        mixBlendMode: 'screen' // Ensures black backgrounds also become transparent
-      }}
-    />
-  );
-};
 
 export default Dashboard;

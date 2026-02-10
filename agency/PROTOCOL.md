@@ -4,7 +4,8 @@
 - **Spawn Isolado:** Cada tarefa complexa deve ser executada via `sessions_spawn`.
 - **Input Minimalista:** O sub-agente recebe apenas a tarefa e o link para os arquivos necessários.
 - **Output Direto:** O resultado deve ser escrito em um arquivo na pasta `tasks/` e notificado no dashboard.
-- **Heartbeat de Cadência (15 min):** Os agentes operacionais (Ícaro, Maya, etc.) são "acordados" a cada 15 minutos via Cron ou Heartbeat para verificar o `agency/CRM.json`. Se não houver tarefa pendente, eles voltam ao standby imediatamente.
+- **Fallback Automático (Ollama):** Caso qualquer agente operacional (Ícaro, Maya, Midas) receba um erro 429 (quota exhausted), ele deve tentar re-executar a tarefa utilizando o modelo local Ollama para garantir a entrega sem interrupção.
+- **Heartbeat de Cadência (15 min):** Os agentes operacionais são "acordados" a cada 15 minutos via Cron ou Heartbeat.
 
 ## 2. Hierarquia e Comunicação
 - **Erika (Head):** Interface direta com o Will. Erika recebe as ordens, define a estratégia e delega para os agentes operacionais no CRM. Erika não "suja as mãos" no código ou copy, ela gerencia a excelência.
