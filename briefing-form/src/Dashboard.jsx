@@ -42,8 +42,8 @@ const SectionHeader = ({ title, icon: Icon, color }) => (
 );
 
 // --- COMPONENTE PRINCIPAL ---
-const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState('prospec');
+const Dashboard = ({ initialTab = 'dashboard' }) => {
+  const [activeTab, setActiveTab] = useState(initialTab);
   const [activeWorkspace, setActiveWorkspace] = useState('agency');
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
