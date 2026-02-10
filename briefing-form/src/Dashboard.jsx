@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Users,
   Target,
@@ -35,7 +35,7 @@ const Dashboard = () => {
     { name: 'Erika', role: 'Mentor de Vida', status: 'Atenta', color: 'text-purple-400' }
   ];
 
-  // In a real scenario, these would come from Supabase
+  // Initialize tasks state with dummy data
   const [tasks, setTasks] = useState([
     { id: '001', title: 'Configuração do CRM Digital', priority: 'Alta', resp: 'Ícaro', status: 'in_progress', category: 'agency' },
     { id: '002', title: 'Definição de Oferta Irresistível', priority: 'Alta', resp: 'Erika', status: 'todo', category: 'agency' },
@@ -54,14 +54,18 @@ const Dashboard = () => {
 
   const handleAddTask = (e) => {
     e.preventDefault();
+    if (!newTask.title) return;
+
     const id = activeTab === 'agency' ? `00${tasks.length + 1}` : `F0${tasks.length + 1}`;
     const task = { 
-      ...newTask, 
-      id, 
+      id,
+      title: newTask.title,
+      priority: newTask.priority,
       status: 'todo', 
       category: activeTab,
       resp: newTask.resp || (activeTab === 'agency' ? 'Erika' : 'Midas')
     };
+
     setTasks([...tasks, task]);
     setShowModal(false);
     setNewTask({ title: '', priority: 'Normal', resp: '' });
@@ -73,7 +77,7 @@ const Dashboard = () => {
       {/* Supabase Indicator */}
       <div className="fixed top-4 right-4 flex items-center gap-2 bg-zinc-900/80 border border-zinc-800 px-3 py-1.5 rounded-full backdrop-blur-md z-50">
         <Database size={12} className="text-emerald-500" />
-        <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-tighter">Supabase: Conectando...</span>
+        <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-tighter">Supabase: Local Mode</span>
       </div>
 
       {/* Header */}
@@ -342,7 +346,7 @@ const StatCard = ({ label, val, icon: Icon, color = "text-white" }) => (
 
 const TransparentImage = ({ src, alt, className, style }) => {
   const [imgSrc, setImgSrc] = useState(src);
-  React.useEffect(() => {
+  useEffect(() => {
     const img = new Image();
     img.crossOrigin = "Anonymous";
     img.src = src;
