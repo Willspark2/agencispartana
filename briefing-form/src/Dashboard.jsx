@@ -75,15 +75,32 @@ const Dashboard = ({ initialTab }) => {
   }, [initialTab]);
 
   const [leads] = useState([
-    { id: 1, name: 'Restaurante Sabor Mineiro', niche: 'Alimentação', status: 'Novo', gmn: 'Ruim', contact: '(31) 98888-0001' },
-    { id: 2, name: 'Clínica Sorriso VIP', niche: 'Saúde', status: 'Pitch Enviado', gmn: 'Sem Site', contact: '(31) 98888-0002' },
-    { id: 3, name: 'Estética Bella Donna', niche: 'Beleza', status: 'Reunião Marcada', gmn: 'Ruim', contact: '(31) 98888-0003' },
+    { id: 1, name: 'Ótica Santa Luzia', niche: 'Ótica (Barro Preto)', status: 'Novo', gmn: 'Sem Site', contact: '(31) 99123-4567' },
+    { id: 2, name: 'Visão Real Ótica', niche: 'Ótica (Centro)', status: 'Novo', gmn: 'Nota 4.2', contact: '(31) 99234-5678' },
+    { id: 3, name: 'Ótica do Povo BH', niche: 'Ótica (Venda Nova)', status: 'Novo', gmn: 'Não Reivindicado', contact: '(31) 99345-6789' },
+    { id: 4, name: 'Boutique dos Óculos', niche: 'Ótica (Lourdes)', status: 'Novo', gmn: 'Site Quebrado', contact: '(31) 99456-7890' },
+    { id: 5, name: 'Ótica Central da Visão', niche: 'Ótica (Savassi)', status: 'Novo', gmn: 'Fotos Ruins', contact: '(31) 99567-8901' },
+    { id: 6, name: 'Império das Lentes', niche: 'Ótica (Santa Efigênia)', status: 'Novo', gmn: 'Sem WhatsApp', contact: '(31) 99678-9012' },
+    { id: 7, name: 'Ótica Diamante', niche: 'Ótica (Buritis)', status: 'Novo', gmn: 'Sem Prova Social', contact: '(31) 99789-0123' },
+    { id: 8, name: 'Euro Ótica', niche: 'Ótica (Pampulha)', status: 'Novo', gmn: 'Sem Site', contact: '(31) 99890-1234' },
+    { id: 9, name: 'Ótica Belo Olhar', niche: 'Ótica (Padre Eustáquio)', status: 'Novo', gmn: 'Horário Errado', contact: '(31) 99901-2345' },
+    { id: 10, name: 'Mundo dos Óculos', niche: 'Ótica (Castelo)', status: 'Novo', gmn: 'Poucas Fotos', contact: '(31) 99012-3456' },
+    { id: 11, name: 'Ótica Íris', niche: 'Ótica (Prado)', status: 'Novo', gmn: 'Sem Descrição', contact: '(31) 98123-4567' },
+    { id: 12, name: 'Ponto de Visão BH', niche: 'Ótica (Eldorado)', status: 'Novo', gmn: 'Inexistente', contact: '(31) 98234-5678' },
+    { id: 13, name: 'Ótica Veneza', niche: 'Ótica (Sion)', status: 'Novo', gmn: 'Nota 3.8', contact: '(31) 98345-6789' },
+    { id: 14, name: 'Luz Ótica', niche: 'Ótica (Betânia)', status: 'Novo', gmn: 'Sem Fachada', contact: '(31) 98456-7890' },
+    { id: 15, name: 'Ótica Vision Plus', niche: 'Ótica (Gutiérrez)', status: 'Novo', gmn: 'Link Quebrado', contact: '(31) 98567-8901' },
+    { id: 16, name: 'Stilo Ótica', niche: 'Ótica (Mangabeiras)', status: 'Novo', gmn: 'Sem Perfil', contact: '(31) 98678-9012' },
+    { id: 17, name: 'Ótica da Vila', niche: 'Ótica (Planalto)', status: 'Novo', gmn: 'Fotos Irrelevantes', contact: '(31) 98789-0123' },
+    { id: 18, name: 'Foco Ótica', niche: 'Ótica (Sagrada Família)', status: 'Novo', gmn: '1 Estrela (S/R)', contact: '(31) 98890-1234' },
+    { id: 19, name: 'Ótica Olhar Moderno', niche: 'Ótica (Alípio de Melo)', status: 'Novo', gmn: 'Sem SEO', contact: '(31) 98901-2345' },
+    { id: 20, name: 'Ótica Master', niche: 'Ótica (Heliópolis)', status: 'Novo', gmn: 'Cat. Errada', contact: '(31) 98012-3456' },
   ]);
 
   const [brainstormFeed, setBrainstormFeed] = useState([
+    { agent: 'ÍCARO', time: 'Agora', text: 'Mineração concluída: 20 óticas fantasmas mapeadas em BH. Prontas para ataque do Arthur.', color: 'bg-blue-500' },
     { agent: 'ERIKA', time: '10:45', text: 'Operação Hunter ativada. Foco total em caixa rápido via GMN.', color: 'bg-purple-500' },
-    { agent: 'MAYA', time: '10:55', text: 'Script de Ego pronto para disparo. Focar na dor financeira.', color: 'bg-red-500' },
-    { agent: 'ÍCARO', time: '11:05', text: 'Mapeamento de 20 novos leads na região iniciado.', color: 'bg-blue-500' }
+    { agent: 'MAYA', time: '10:55', text: 'Script de Ego pronto para disparo. Focar na dor financeira.', color: 'bg-red-500' }
   ]);
 
   const sidebarLinks = [
@@ -245,16 +262,32 @@ const Dashboard = ({ initialTab }) => {
             </div>
           )}
 
-          {/* VIEWS ADICIONAIS (PLACEHOLDERS REFINADOS) */}
-          {(activeTab === 'kanban' || activeTab === 'projects' || activeTab === 'finance') && (
-            <div className="flex flex-col items-center justify-center h-[60vh] animate-in fade-in duration-1000">
-               <div className="w-20 h-20 bg-zinc-900 rounded-3xl flex items-center justify-center border border-zinc-800 mb-6 text-zinc-700">
-                  <Database size={40} />
+          {/* VIEW: KANBAN (ANTFARM FUSION) */}
+          {activeTab === 'kanban' && (
+            <div className="h-full flex flex-col animate-in fade-in duration-700">
+               <div className="flex items-center justify-between mb-8">
+                 <SectionHeader title="Antfarm Kanban" icon={FolderKanban} color="text-yellow-500" />
+                 <div className="flex gap-2">
+                   <Badge variant="success">Servidor Ativo</Badge>
+                   <Badge variant="purple">Porta 3333</Badge>
+                 </div>
                </div>
-               <h3 className="text-3xl font-black text-white uppercase italic tracking-tighter">Aguardando Conexão Supabase</h3>
-               <p className="text-zinc-600 uppercase tracking-widest text-[10px] mt-4 font-black">Rodar SQL no painel para ativar este módulo.</p>
+               <div className="flex-1 rounded-3xl overflow-hidden border border-zinc-900 bg-zinc-950/20 shadow-2xl relative group">
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                 <iframe 
+                   src="http://localhost:3333" 
+                   className="w-full h-[70vh] border-none grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                   title="Antfarm Dashboard"
+                 />
+                 <div className="absolute bottom-6 left-6 z-20">
+                    <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] italic">Orquestração de Agentes em Tempo Real</p>
+                 </div>
+               </div>
             </div>
           )}
+
+          {/* VIEWS ADICIONAIS (PLACEHOLDERS REFINADOS) */}
+          {(activeTab === 'projects' || activeTab === 'finance') && (
 
         </div>
       </main>
