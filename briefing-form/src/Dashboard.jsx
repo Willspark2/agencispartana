@@ -275,7 +275,7 @@ const Dashboard = ({ initialTab }) => {
                <div className="flex-1 rounded-3xl overflow-hidden border border-zinc-900 bg-zinc-950/20 shadow-2xl relative group">
                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
                  <iframe 
-                   src="http://localhost:3333" 
+                   src="https://sixty-chefs-enter.loca.lt" 
                    className="w-full h-[70vh] border-none grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                    title="Antfarm Dashboard"
                  />
